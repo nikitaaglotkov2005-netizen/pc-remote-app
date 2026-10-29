@@ -24,6 +24,11 @@ jobs:
       - name: Generate platform files
         run: flutter create . --project-name pc_remote --org com.pcremote
 
+      - name: Update Kotlin Version
+        run: |
+          sed -i 's/ext.kotlin_version = .*/ext.kotlin_version = "1.9.24"/' android/build.gradle || true
+          sed -i 's/id "org.jetbrains.kotlin.android" version .*/id "org.jetbrains.kotlin.android" version "1.9.24" apply false/' android/settings.gradle || true
+
       - name: Install dependencies
         run: flutter pub get
 
